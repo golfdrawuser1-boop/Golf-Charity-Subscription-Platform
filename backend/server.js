@@ -37,6 +37,7 @@ app.use('/api', limiter)
 // =====================
 const allowedOrigins = [
   'https://golf-charity-subscription-platform-pi-jet.vercel.app',
+  'https://golfcharity-admin.vercel.app',
   process.env.FRONTEND_URL,
   process.env.ADMIN_URL,
   'http://localhost:5173',
