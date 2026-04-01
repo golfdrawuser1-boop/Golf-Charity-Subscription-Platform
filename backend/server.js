@@ -9,11 +9,6 @@ const app = express()
 
 // =====================
 // TRUST PROXY
-// MUST be set before rate-limiter and any IP-based middleware.
-// Render/Railway/Heroku all sit behind a load-balancer that sets
-// X-Forwarded-For. Without this, express-rate-limit throws
-// ERR_ERL_UNEXPECTED_X_FORWARDED_FOR and crashes EVERY /api route
-// — including login and register.
 // =====================
 app.set('trust proxy', 1)
 
@@ -23,8 +18,8 @@ app.set('trust proxy', 1)
 app.use(helmet())
 
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 200,                  // max requests per window per IP
+  windowMs: 15 * 60 * 1000,
+  max: 200,
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: 'Too many requests. Please try again later.' },
@@ -32,8 +27,7 @@ const limiter = rateLimit({
 app.use('/api', limiter)
 
 // =====================
-// CORS
-// Pull allowed origins from env — falls back to localhost for dev.
+// CORS — all origins hardcoded + env fallback, trailing slashes stripped
 // =====================
 const allowedOrigins = [
   'https://golf-charity-subscription-platform-pi-jet.vercel.app',
@@ -42,13 +36,15 @@ const allowedOrigins = [
   process.env.ADMIN_URL,
   'http://localhost:5173',
   'http://localhost:5174',
-].filter(Boolean) // remove undefined/empty entries
+]
+  .filter(Boolean)
+  .map(o => o.replace(/\/$/, '').replace(/\/login$/, '')) // strip trailing slash AND /login suffix
 
 app.use(cors({
   origin: (origin, callback) => {
-    // Allow requests with no origin (Postman, mobile apps, curl)
     if (!origin) return callback(null, true)
-    if (allowedOrigins.includes(origin)) return callback(null, true)
+    const cleanOrigin = origin.replace(/\/$/, '')
+    if (allowedOrigins.includes(cleanOrigin)) return callback(null, true)
     console.warn(`CORS blocked: ${origin}`)
     callback(new Error(`CORS: origin ${origin} not allowed`))
   },
@@ -57,7 +53,6 @@ app.use(cors({
 
 // =====================
 // BODY PARSERS
-// Razorpay webhook needs raw body — must come BEFORE express.json()
 // =====================
 app.use('/api/subscriptions/webhook', express.raw({ type: 'application/json' }))
 app.use(express.json())
@@ -120,10 +115,10 @@ app.listen(PORT, () => {
   ====================================
   Golf Charity Platform - Backend API
   ====================================
-  Server : http://localhost:${PORT}
-  Health : http://localhost:${PORT}/health
-  Env    : ${process.env.NODE_ENV || 'development'}
-  Proxy  : trusted (Render/Railway compatible)
+  Server  : http://localhost:${PORT}
+  Health  : http://localhost:${PORT}/health
+  Env     : ${process.env.NODE_ENV || 'development'}
+  Origins : ${allowedOrigins.join(' | ')}
   ====================================
   `)
 })
