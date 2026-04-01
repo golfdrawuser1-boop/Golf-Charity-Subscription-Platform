@@ -36,6 +36,7 @@ app.use('/api', limiter)
 // Pull allowed origins from env — falls back to localhost for dev.
 // =====================
 const allowedOrigins = [
+  'https://golf-charity-subscription-platform-pi-jet.vercel.app',
   process.env.FRONTEND_URL,
   process.env.ADMIN_URL,
   'http://localhost:5173',
