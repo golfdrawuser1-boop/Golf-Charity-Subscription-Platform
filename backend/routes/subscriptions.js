@@ -27,7 +27,7 @@ router.post('/create-order', protect, async (req, res) => {
     const order = await razorpay.orders.create({
       amount: selectedPlan.amount,
       currency: selectedPlan.currency,
-      receipt: `sub_${req.user.id}_${Date.now()}`,
+      receipt: `sub_${req.user.id.slice(0, 8)}_${Date.now().toString().slice(-8)}`,
       notes: {
         user_id: req.user.id,
         plan,
