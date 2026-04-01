@@ -22,18 +22,46 @@ app.use('/api', limiter)
 // =====================
 // CORS
 // =====================
-const allowedOrigins = [
-  process.env.FRONTEND_URL || 'http://localhost:5173',
-  process.env.ADMIN_URL || 'http://localhost:5174',
+// Collect all allowed origins from env (supports comma-separated list too)
+const rawOrigins = [
+  process.env.FRONTEND_URL,
+  process.env.ADMIN_URL,
+  // Local dev fallbacks (safe to keep — they won't match in production)
+  'http://localhost:5173',
+  'http://localhost:5174',
+  'http://localhost:4173',
+  'http://localhost:4174',
 ]
+
+// Also support ALLOWED_ORIGINS env var for extra flexibility (comma-separated)
+if (process.env.ALLOWED_ORIGINS) {
+  process.env.ALLOWED_ORIGINS.split(',').forEach(o => rawOrigins.push(o.trim()))
+}
+
+const allowedOrigins = [...new Set(rawOrigins.filter(Boolean))]
+
+console.log('Allowed CORS origins:', allowedOrigins)
 
 app.use(cors({
   origin: (origin, callback) => {
-    if (!origin || allowedOrigins.includes(origin)) callback(null, true)
-    else callback(new Error('Not allowed by CORS'))
+    // Allow requests with no origin (server-to-server, Postman, curl)
+    if (!origin) return callback(null, true)
+    if (allowedOrigins.includes(origin)) return callback(null, true)
+    // Return false (block) instead of throwing — avoids unhandled error crashes
+    return callback(null, false)
   },
-  credentials: true
+  credentials: true,
+  optionsSuccessStatus: 200,
 }))
+
+// Handle CORS-blocked preflight cleanly
+app.use((req, res, next) => {
+  const origin = req.headers.origin
+  if (origin && !allowedOrigins.includes(origin) && req.method === 'OPTIONS') {
+    return res.status(403).json({ error: 'Not allowed by CORS' })
+  }
+  next()
+})
 
 // =====================
 // BODY PARSERS
@@ -85,6 +113,10 @@ app.use((req, res) => {
 // GLOBAL ERROR HANDLER
 // =====================
 app.use((err, req, res, next) => {
+  // Handle CORS errors gracefully
+  if (err.message === 'Not allowed by CORS') {
+    return res.status(403).json({ error: 'CORS: Origin not allowed.' })
+  }
   console.error('Unhandled error:', err)
   res.status(err.status || 500).json({
     error: process.env.NODE_ENV === 'production'
