@@ -8,60 +8,50 @@ const rateLimit = require('express-rate-limit')
 const app = express()
 
 // =====================
+// TRUST PROXY
+// MUST be set before rate-limiter and any IP-based middleware.
+// Render/Railway/Heroku all sit behind a load-balancer that sets
+// X-Forwarded-For. Without this, express-rate-limit throws
+// ERR_ERL_UNEXPECTED_X_FORWARDED_FOR and crashes EVERY /api route
+// — including login and register.
+// =====================
+app.set('trust proxy', 1)
+
+// =====================
 // SECURITY MIDDLEWARE
 // =====================
 app.use(helmet())
 
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000,
-  max: 200,
-  message: { error: 'Too many requests. Please try again later.' }
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 200,                  // max requests per window per IP
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: 'Too many requests. Please try again later.' },
 })
 app.use('/api', limiter)
 
 // =====================
 // CORS
+// Pull allowed origins from env — falls back to localhost for dev.
 // =====================
-// Collect all allowed origins from env (supports comma-separated list too)
-const rawOrigins = [
+const allowedOrigins = [
   process.env.FRONTEND_URL,
   process.env.ADMIN_URL,
-  // Local dev fallbacks (safe to keep — they won't match in production)
   'http://localhost:5173',
   'http://localhost:5174',
-  'http://localhost:4173',
-  'http://localhost:4174',
-]
-
-// Also support ALLOWED_ORIGINS env var for extra flexibility (comma-separated)
-if (process.env.ALLOWED_ORIGINS) {
-  process.env.ALLOWED_ORIGINS.split(',').forEach(o => rawOrigins.push(o.trim()))
-}
-
-const allowedOrigins = [...new Set(rawOrigins.filter(Boolean))]
-
-console.log('Allowed CORS origins:', allowedOrigins)
+].filter(Boolean) // remove undefined/empty entries
 
 app.use(cors({
   origin: (origin, callback) => {
-    // Allow requests with no origin (server-to-server, Postman, curl)
+    // Allow requests with no origin (Postman, mobile apps, curl)
     if (!origin) return callback(null, true)
     if (allowedOrigins.includes(origin)) return callback(null, true)
-    // Return false (block) instead of throwing — avoids unhandled error crashes
-    return callback(null, false)
+    console.warn(`CORS blocked: ${origin}`)
+    callback(new Error(`CORS: origin ${origin} not allowed`))
   },
   credentials: true,
-  optionsSuccessStatus: 200,
 }))
-
-// Handle CORS-blocked preflight cleanly
-app.use((req, res, next) => {
-  const origin = req.headers.origin
-  if (origin && !allowedOrigins.includes(origin) && req.method === 'OPTIONS') {
-    return res.status(403).json({ error: 'Not allowed by CORS' })
-  }
-  next()
-})
 
 // =====================
 // BODY PARSERS
@@ -74,9 +64,7 @@ app.use(express.urlencoded({ extended: true }))
 // =====================
 // LOGGING
 // =====================
-if (process.env.NODE_ENV !== 'production') {
-  app.use(morgan('dev'))
-}
+app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'))
 
 // =====================
 // HEALTH CHECK
@@ -86,21 +74,21 @@ app.get('/health', (req, res) => {
     status: 'ok',
     project: 'Golf Charity Subscription Platform',
     version: '2.0.0',
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
   })
 })
 
 // =====================
 // API ROUTES
 // =====================
-app.use('/api/auth', require('./routes/auth'))
-app.use('/api/users', require('./routes/users'))
-app.use('/api/scores', require('./routes/scores'))
+app.use('/api/auth',          require('./routes/auth'))
+app.use('/api/users',         require('./routes/users'))
+app.use('/api/scores',        require('./routes/scores'))
 app.use('/api/subscriptions', require('./routes/subscriptions'))
-app.use('/api/charities', require('./routes/charities'))
-app.use('/api/draws', require('./routes/draws'))
-app.use('/api/winners', require('./routes/winners'))
-app.use('/api/admin', require('./routes/admin'))
+app.use('/api/charities',     require('./routes/charities'))
+app.use('/api/draws',         require('./routes/draws'))
+app.use('/api/winners',       require('./routes/winners'))
+app.use('/api/admin',         require('./routes/admin'))
 
 // =====================
 // 404 HANDLER
@@ -113,15 +101,11 @@ app.use((req, res) => {
 // GLOBAL ERROR HANDLER
 // =====================
 app.use((err, req, res, next) => {
-  // Handle CORS errors gracefully
-  if (err.message === 'Not allowed by CORS') {
-    return res.status(403).json({ error: 'CORS: Origin not allowed.' })
-  }
   console.error('Unhandled error:', err)
   res.status(err.status || 500).json({
     error: process.env.NODE_ENV === 'production'
       ? 'Something went wrong. Please try again.'
-      : err.message
+      : err.message,
   })
 })
 
@@ -134,10 +118,10 @@ app.listen(PORT, () => {
   ====================================
   Golf Charity Platform - Backend API
   ====================================
-  Server: http://localhost:${PORT}
-  Health: http://localhost:${PORT}/health
-  Env:    ${process.env.NODE_ENV || 'development'}
-  Payment: Razorpay
+  Server : http://localhost:${PORT}
+  Health : http://localhost:${PORT}/health
+  Env    : ${process.env.NODE_ENV || 'development'}
+  Proxy  : trusted (Render/Railway compatible)
   ====================================
   `)
 })
