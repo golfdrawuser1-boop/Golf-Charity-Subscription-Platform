@@ -1,0 +1,100 @@
+.page { min-height: 100vh; background: var(--bg-primary); }
+.wrapper { padding: 100px 0 60px; }
+
+.header {
+  text-align: center;
+  margin-bottom: 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.title { font-family: var(--font-display); font-size: clamp(36px, 6vw, 56px); font-weight: 800; letter-spacing: -0.02em; }
+.sub { font-size: 17px; color: var(--text-secondary); max-width: 520px; line-height: 1.7; }
+
+/* Search */
+.searchWrap {
+  position: relative;
+  max-width: 520px;
+  margin: 0 auto 48px;
+}
+.searchIcon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+  pointer-events: none;
+}
+.searchInput { padding-left: 44px !important; }
+
+/* Sections */
+.section { margin-bottom: 48px; }
+.sectionTitle { font-family: var(--font-display); font-size: 22px; font-weight: 700; margin-bottom: 24px; }
+
+.featuredGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 20px;
+  margin-bottom: 16px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* Card */
+.charityCard {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease;
+}
+
+.charityCard.selected {
+  border-color: var(--accent);
+  box-shadow: 0 0 24px rgba(74,222,128,0.1);
+}
+
+.charityImg {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  background: var(--bg-secondary);
+}
+
+.charityPlaceholder {
+  width: 100%;
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  background: var(--bg-secondary);
+}
+
+.charityBody {
+  padding: 20px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.charityName { font-family: var(--font-display); font-size: 18px; font-weight: 700; }
+
+.charityDesc { font-size: 14px; color: var(--text-secondary); line-height: 1.6; flex: 1; }
+
+.event { margin-top: 4px; }
+
+.charityFooter { margin-top: 16px; }
+
+/* Empty */
+.empty { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 60px 24px; text-align: center; color: var(--text-secondary); font-size: 15px; }
+
+@media (max-width: 1024px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .grid, .featuredGrid { grid-template-columns: 1fr; } }

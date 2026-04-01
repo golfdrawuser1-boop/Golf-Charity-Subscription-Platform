@@ -1,0 +1,50 @@
+.page { padding: 40px 36px; }
+
+.toolbar { display: flex; gap: 12px; margin-bottom: 20px; align-items: center; flex-wrap: wrap; }
+
+.searchWrap { position: relative; flex: 1; max-width: 400px; }
+.searchIcon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-muted); pointer-events: none; }
+.searchInput { padding-left: 38px !important; }
+
+.tableCard { padding: 0; overflow: hidden; }
+
+.userCell { display: flex; align-items: center; gap: 10px; }
+.userAvatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--accent-dim); border: 1px solid var(--border-accent);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display); font-size: 13px; font-weight: 800;
+  color: var(--accent); flex-shrink: 0;
+}
+.userName { font-weight: 600; font-size: 14px; color: var(--text-primary); }
+
+.rowActions { display: flex; gap: 6px; align-items: center; }
+
+.pagination {
+  display: flex; align-items: center; justify-content: center; gap: 16px;
+  padding: 20px; border-top: 1px solid var(--border);
+}
+.pageInfo { font-size: 13px; color: var(--text-muted); }
+
+.empty { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 60px 24px; color: var(--text-secondary); }
+
+/* Modal */
+.overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.7);
+  backdrop-filter: blur(4px); z-index: 200;
+  display: flex; align-items: center; justify-content: center; padding: 24px;
+}
+.modal { width: 100%; max-width: 480px; padding: 0; animation: fadeUp 0.25s ease; }
+.modalHead {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 24px 28px; border-bottom: 1px solid var(--border);
+}
+.modalTitle { font-family: var(--font-display); font-size: 20px; font-weight: 700; }
+.modalBody { padding: 24px 28px; display: flex; flex-direction: column; gap: 16px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.modalFooter {
+  display: flex; gap: 12px; padding: 20px 28px;
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 768px) { .page { padding: 24px 16px; } }

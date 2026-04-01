@@ -1,0 +1,230 @@
+.page {
+  min-height: 100vh;
+  background: var(--bg-primary);
+  padding-bottom: 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.bg { position: fixed; inset: 0; pointer-events: none; }
+
+.blob1 {
+  position: absolute;
+  width: 600px; height: 600px;
+  top: -200px; left: -200px;
+  background: radial-gradient(circle, rgba(74,222,128,0.07) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.blob2 {
+  position: absolute;
+  width: 500px; height: 500px;
+  bottom: -100px; right: -100px;
+  background: radial-gradient(circle, rgba(245,158,11,0.05) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.topNav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.logoLink {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.logoText {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.logoText span { color: var(--accent); }
+
+.hero {
+  text-align: center;
+  padding: 40px 0 60px;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: clamp(40px, 6vw, 64px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.sub {
+  font-size: 17px;
+  color: var(--text-secondary);
+}
+
+/* Plans */
+.plansGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.planCard {
+  background: var(--bg-card);
+  border: 2px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 36px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.planCard:hover { border-color: rgba(255,255,255,0.15); transform: translateY(-2px); }
+
+.planCard.selected {
+  border-color: var(--accent);
+  background: linear-gradient(135deg, var(--bg-card), rgba(74,222,128,0.04));
+}
+
+.planCard.highlighted {
+  box-shadow: 0 0 60px rgba(74,222,128,0.1);
+}
+
+.popularBadge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: #080C0A;
+  font-family: var(--font-display);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 16px;
+  border-radius: 100px;
+  white-space: nowrap;
+}
+
+.planName {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.planPrice {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  margin-bottom: 8px;
+}
+
+.priceVal {
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.pricePeriod {
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+
+.monthly {
+  font-size: 13px;
+  color: var(--accent);
+  margin-bottom: 24px;
+}
+
+.featureList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.selectIndicator {
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 600;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  transition: all 0.2s ease;
+}
+
+.selectActive {
+  background: var(--accent-dim);
+  color: var(--accent);
+  border-color: var(--border-accent);
+}
+
+/* CTA */
+.ctaArea {
+  text-align: center;
+  margin-top: 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.ctaSub {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 16px;
+}
+
+/* Benefits */
+.benefits {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 60px;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.benefit {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.benefitText {
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 640px) {
+  .plansGrid { grid-template-columns: 1fr; }
+  .topNav { padding: 20px 16px; }
+  .benefits { gap: 20px; flex-direction: column; align-items: center; }
+}

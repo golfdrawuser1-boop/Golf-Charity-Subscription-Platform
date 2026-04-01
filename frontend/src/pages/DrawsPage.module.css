@@ -1,0 +1,77 @@
+.page { min-height: 100vh; background: var(--bg-primary); }
+.wrapper { padding: 100px 0 60px; }
+
+.back { display: inline-block; font-size: 13px; color: var(--text-muted); text-decoration: none; margin-bottom: 10px; transition: color 0.2s; }
+.back:hover { color: var(--accent); }
+
+.header { margin-bottom: 32px; }
+.title { font-family: var(--font-display); font-size: 36px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 6px; }
+.sub { font-size: 15px; color: var(--text-secondary); }
+
+.tabs { display: flex; gap: 8px; margin-bottom: 28px; }
+.tab {
+  padding: 10px 22px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.tab:hover { color: var(--text-primary); background: var(--bg-card); }
+.tab.active { background: var(--accent-dim); border-color: var(--border-accent); color: var(--accent); font-weight: 600; }
+
+.list { display: flex; flex-direction: column; gap: 16px; }
+
+.drawCard {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  padding: 28px 32px;
+  flex-wrap: wrap;
+}
+
+.drawLeft { flex: 1; min-width: 200px; }
+
+.drawMeta { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+
+.drawType { font-size: 13px; color: var(--text-muted); }
+
+.drawName { font-family: var(--font-display); font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+
+.drawDate { font-size: 14px; color: var(--text-secondary); }
+.drawDate strong { color: var(--text-primary); }
+
+/* Numbers */
+.drawNumbers, .winnersPreview { flex-shrink: 0; }
+.numbersLabel { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 10px; font-weight: 600; }
+.balls { display: flex; gap: 8px; }
+.ball {
+  width: 40px; height: 40px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent-dim);
+  border: 1px solid var(--border-accent);
+  border-radius: 50%;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+/* Pool */
+.drawPool { display: flex; gap: 32px; flex-shrink: 0; }
+.poolStat { display: flex; flex-direction: column; gap: 4px; }
+.poolVal { font-family: var(--font-display); font-size: 24px; font-weight: 800; color: var(--gold); }
+.poolLabel { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); }
+
+/* Winner */
+.winner { display: flex; align-items: center; gap: 10px; }
+.winnerName { font-family: var(--font-display); font-size: 16px; font-weight: 700; }
+
+/* Empty */
+.empty { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 80px 24px; text-align: center; }
+.empty h3 { font-family: var(--font-display); font-size: 20px; font-weight: 700; }
+.empty p { font-size: 15px; color: var(--text-secondary); }

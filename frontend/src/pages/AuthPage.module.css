@@ -1,0 +1,139 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  position: relative;
+  overflow: hidden;
+}
+
+.bg {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+.blob {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(74,222,128,0.05) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 48px;
+  width: 100%;
+  max-width: 440px;
+  position: relative;
+  z-index: 1;
+  animation: fadeUp 0.4s ease;
+}
+
+.logoLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  margin-bottom: 36px;
+  font-size: 18px;
+}
+
+.logoText {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.logoText span { color: var(--accent); }
+
+.title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: -0.02em;
+}
+
+.sub {
+  font-size: 15px;
+  color: var(--text-secondary);
+  margin-bottom: 36px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.field { display: flex; flex-direction: column; }
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.switchText {
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: 20px;
+}
+
+.switchLink {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+.switchLink:hover { text-decoration: underline; }
+
+.divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 4px 0;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+.divider::before, .divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.charitySelect {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.charityOption {
+  padding: 12px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+.charityOption:hover { border-color: var(--border-accent); color: var(--text-primary); }
+.charityOption.selected { border-color: var(--accent); background: var(--accent-dim); color: var(--accent); }
+
+@media (max-width: 480px) {
+  .card { padding: 32px 24px; }
+  .row { grid-template-columns: 1fr; }
+}

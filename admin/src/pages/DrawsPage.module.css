@@ -1,0 +1,58 @@
+.page { padding: 40px 36px; }
+
+.createCard { margin-bottom: 24px; animation: fadeUp 0.3s ease; }
+.createHead { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.createTitle { font-family: var(--font-display); font-size: 18px; font-weight: 700; }
+.createForm { display: flex; flex-direction: column; gap: 16px; }
+.formRow { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.createActions { display: flex; gap: 12px; }
+
+/* Simulation */
+.simCard { margin-bottom: 24px; border-color: rgba(245,158,11,0.3); animation: fadeUp 0.3s ease; }
+.simHead { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.simTitle { font-family: var(--font-display); font-size: 18px; font-weight: 700; }
+.simLabel { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); font-weight: 600; margin-bottom: 12px; }
+.simNumbers { margin-bottom: 20px; }
+.balls { display: flex; gap: 10px; flex-wrap: wrap; }
+.ball {
+  width: 44px; height: 44px;
+  display: flex; align-items: center; justify-content: center;
+  background: var(--accent-dim); border: 1px solid var(--border-accent);
+  border-radius: 50%;
+  font-family: var(--font-display); font-size: 16px; font-weight: 800; color: var(--accent);
+}
+.simWinners { margin-bottom: 20px; }
+.winnerTiers { display: flex; flex-direction: column; gap: 10px; }
+.tierItem { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: var(--bg-secondary); border-radius: var(--radius-md); }
+.tierName { font-size: 14px; font-weight: 600; }
+.simActions { display: flex; gap: 12px; }
+
+/* Draws List */
+.list { display: flex; flex-direction: column; gap: 14px; }
+
+.drawCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 24px 28px;
+  flex-wrap: wrap;
+}
+
+.drawInfo { flex: 1; }
+.drawMeta { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+.drawType { font-size: 13px; color: var(--text-muted); }
+.drawName { font-family: var(--font-display); font-size: 19px; font-weight: 700; margin-bottom: 8px; }
+.drawDetails { display: flex; gap: 20px; font-size: 13px; color: var(--text-secondary); flex-wrap: wrap; }
+
+.drawActions { display: flex; gap: 10px; flex-shrink: 0; }
+.drawNumbers { flex-shrink: 0; }
+
+.empty { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 60px 24px; text-align: center; color: var(--text-secondary); }
+
+@media (max-width: 768px) {
+  .page { padding: 24px 16px; }
+  .formRow { grid-template-columns: 1fr; }
+  .drawCard { flex-direction: column; align-items: flex-start; }
+}

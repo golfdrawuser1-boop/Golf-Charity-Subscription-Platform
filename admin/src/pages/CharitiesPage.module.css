@@ -1,0 +1,48 @@
+.page { padding: 40px 36px; }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.charityCard {
+  padding: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.img { width: 100%; height: 160px; object-fit: cover; display: block; background: var(--bg-secondary); }
+.imgPlaceholder { width: 100%; height: 120px; display: flex; align-items: center; justify-content: center; font-size: 36px; background: var(--bg-secondary); }
+
+.body { padding: 18px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.charityHeader { display: flex; justify-content: space-between; align-items: flex-start; }
+.name { font-family: var(--font-display); font-size: 16px; font-weight: 700; }
+.desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; flex: 1; }
+.events { font-size: 12px; color: var(--text-muted); }
+.count { margin-top: 4px; }
+
+.actions {
+  display: flex;
+  gap: 4px;
+  padding: 10px 14px;
+  border-top: 1px solid var(--border);
+  background: var(--bg-secondary);
+}
+
+.empty { display: flex; flex-direction: column; align-items: center; gap: 16px; padding: 60px 24px; text-align: center; color: var(--text-secondary); }
+
+/* Modal */
+.overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.75); backdrop-filter: blur(4px); z-index: 200; display: flex; align-items: center; justify-content: center; padding: 24px; }
+.modal { width: 100%; max-width: 520px; padding: 0; animation: fadeUp 0.25s ease; }
+.modalHead { display: flex; justify-content: space-between; align-items: center; padding: 24px 28px; border-bottom: 1px solid var(--border); }
+.modalTitle { font-family: var(--font-display); font-size: 20px; font-weight: 700; }
+.modalForm { padding: 24px 28px; display: flex; flex-direction: column; gap: 16px; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+.checkRow { display: flex; align-items: center; gap: 10px; }
+.modalFooter { display: flex; gap: 12px; padding-top: 8px; }
+
+@media (max-width: 1024px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .grid { grid-template-columns: 1fr; } .page { padding: 24px 16px; } }

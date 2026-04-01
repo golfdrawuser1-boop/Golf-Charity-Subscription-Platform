@@ -1,0 +1,246 @@
+.page { min-height: 100vh; background: var(--bg-primary); }
+.wrapper { padding: 100px 0 60px; }
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 28px;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.back {
+  display: inline-block;
+  font-size: 13px;
+  color: var(--text-muted);
+  text-decoration: none;
+  margin-bottom: 10px;
+  transition: color 0.2s;
+}
+.back:hover { color: var(--accent); }
+
+.title {
+  font-family: var(--font-display);
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+
+.sub { font-size: 15px; color: var(--text-secondary); }
+
+/* Info Banner */
+.infoBanner {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  background: var(--accent-dim);
+  border: 1px solid var(--border-accent);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  margin-bottom: 28px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+.infoBanner strong { color: var(--text-primary); }
+
+/* Form */
+.formCard {
+  margin-bottom: 28px;
+  animation: fadeUp 0.3s ease;
+}
+
+.formTitle {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.form { display: flex; flex-direction: column; gap: 20px; }
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.field { display: flex; flex-direction: column; }
+
+.formActions { display: flex; gap: 12px; }
+
+/* Scores List */
+.scoresList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.scoreCard {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 24px;
+  transition: border-color 0.2s ease;
+  animation: fadeUp 0.3s ease both;
+  position: relative;
+  overflow: hidden;
+}
+
+.scoreCard:hover { border-color: var(--border-accent); }
+
+.scoreCard.latest {
+  border-color: rgba(74,222,128,0.25);
+  background: linear-gradient(135deg, var(--bg-card), rgba(74,222,128,0.03));
+}
+
+.scoreRank {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 40px;
+}
+
+.rankNum {
+  font-family: var(--font-display);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.latestTag {
+  font-size: 9px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  background: var(--accent-dim);
+  padding: 2px 6px;
+  border-radius: 100px;
+}
+
+.scoreMain {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  min-width: 80px;
+}
+
+.scoreNum {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+
+.scoreLabel {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.scoreDate {
+  flex: 1;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+/* Progress bar */
+.scoreBar {
+  width: 120px;
+  height: 4px;
+  background: var(--bg-secondary);
+  border-radius: 2px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.scoreBarFill {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+  transition: width 0.6s ease;
+}
+
+.scoreActions {
+  display: flex;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+/* Slot counter */
+.slotCounter {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 18px 24px;
+}
+
+.slotLabel {
+  font-size: 13px;
+  color: var(--text-muted);
+  flex: 1;
+}
+
+.slots {
+  display: flex;
+  gap: 8px;
+}
+
+.slot {
+  width: 32px;
+  height: 8px;
+  background: var(--bg-secondary);
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.slot.slotFilled {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.slotCount {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+  min-width: 36px;
+  text-align: right;
+}
+
+/* Empty */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 80px 24px;
+  text-align: center;
+}
+
+.emptyState h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.emptyState p { font-size: 15px; color: var(--text-secondary); }
+
+@media (max-width: 640px) {
+  .formRow { grid-template-columns: 1fr; }
+  .scoreBar { display: none; }
+  .scoreDate { font-size: 12px; }
+}

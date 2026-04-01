@@ -1,0 +1,140 @@
+.page { padding: 40px 36px; }
+
+/* Period selector */
+.periodSelect {
+  display: flex;
+  gap: 6px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 4px;
+}
+
+.periodBtn {
+  padding: 7px 14px;
+  border-radius: calc(var(--radius-md) - 2px);
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.periodBtn:hover { color: var(--text-primary); }
+
+.periodActive {
+  background: var(--bg-card);
+  color: var(--accent);
+  font-weight: 600;
+  box-shadow: var(--shadow-card);
+}
+
+/* Summary Grid */
+.summaryGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.summaryCard { padding: 20px; }
+
+.summaryLabel {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.summaryValue {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.delta {
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+.deltaUp { color: var(--green); }
+.deltaDown { color: var(--red); }
+
+/* Charts */
+.chartsRow {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.chartCard { padding: 24px; }
+
+.chartTitle {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+}
+
+/* Pie */
+.pieWrap {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pieLegend {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.legendDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.legendName {
+  font-size: 12px;
+  color: var(--text-secondary);
+  margin-bottom: 2px;
+}
+
+.legendVal {
+  font-family: var(--font-display);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Draw table */
+.checklistCard { padding: 24px; }
+.drawTable { overflow-x: auto; }
+
+/* Responsive */
+@media (max-width: 1280px) {
+  .summaryGrid { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (max-width: 960px) {
+  .chartsRow { grid-template-columns: 1fr; }
+  .summaryGrid { grid-template-columns: repeat(2, 1fr); }
+}

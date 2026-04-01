@@ -1,0 +1,54 @@
+.page { min-height: 100vh; background: var(--bg-primary); }
+.wrapper { padding: 100px 0 60px; }
+
+.header { text-align: center; margin-bottom: 56px; display: flex; flex-direction: column; align-items: center; gap: 16px; }
+.title { font-family: var(--font-display); font-size: clamp(36px, 6vw, 56px); font-weight: 800; letter-spacing: -0.02em; }
+.sub { font-size: 17px; color: var(--text-secondary); max-width: 440px; }
+
+.list { display: flex; flex-direction: column; gap: 20px; }
+
+.drawGroup { padding: 32px; }
+.drawName { font-family: var(--font-display); font-size: 22px; font-weight: 700; margin-bottom: 24px; }
+
+.winnersGrid { display: flex; flex-direction: column; gap: 12px; }
+
+.winnerCard {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px 20px;
+  transition: border-color 0.2s;
+}
+.winnerCard:hover { border-color: var(--border-accent); }
+
+.winnerCard.jackpot {
+  border-color: rgba(245,158,11,0.3);
+  background: linear-gradient(135deg, var(--bg-secondary), rgba(245,158,11,0.04));
+}
+
+.winnerAvatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--accent-dim);
+  border: 1px solid var(--border-accent);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--font-display);
+  font-size: 18px; font-weight: 800;
+  color: var(--accent);
+  flex-shrink: 0;
+}
+.jackpot .winnerAvatar { background: var(--gold-dim); border-color: rgba(245,158,11,0.3); color: var(--gold); }
+
+.winnerInfo { flex: 1; }
+.winnerName { font-family: var(--font-display); font-size: 16px; font-weight: 700; margin-bottom: 4px; }
+.matchType { font-size: 13px; color: var(--text-muted); }
+
+.prize { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+.prizeAmt { font-family: var(--font-display); font-size: 22px; font-weight: 800; color: var(--gold); }
+
+.empty { display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 80px 24px; text-align: center; }
+.empty h3 { font-family: var(--font-display); font-size: 22px; font-weight: 700; }
+.empty p { font-size: 15px; color: var(--text-secondary); max-width: 360px; }

@@ -1,0 +1,203 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 20px 0;
+  transition: all 0.3s ease;
+}
+
+.nav.scrolled {
+  background: rgba(8, 12, 10, 0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  padding: 14px 0;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  flex-shrink: 0;
+}
+
+.logoIcon { font-size: 22px; }
+
+.logoText {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.logoText span { color: var(--accent); }
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+}
+
+.link {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s ease;
+}
+
+.link:hover { color: var(--text-primary); background: var(--bg-card); }
+
+.auth {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+}
+
+.userMenu { position: relative; }
+
+.userBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
+  padding: 8px 14px 8px 8px;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+  font-family: var(--font-body);
+}
+
+.userBtn:hover { border-color: var(--border-accent); }
+
+.avatar {
+  width: 28px;
+  height: 28px;
+  background: var(--accent-dim);
+  border: 1px solid var(--border-accent);
+  color: var(--accent);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--font-display);
+}
+
+.userName { font-weight: 500; }
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 6px;
+  min-width: 180px;
+  box-shadow: var(--shadow-card);
+  animation: fadeUp 0.15s ease;
+}
+
+.dropItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 14px;
+  color: var(--text-secondary);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transition: all 0.15s ease;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  text-align: left;
+}
+
+.dropItem:hover { background: var(--bg-card-hover); color: var(--text-primary); }
+
+.dropLogout { color: #F87171; }
+.dropLogout:hover { background: rgba(239,68,68,0.08); color: #F87171; }
+
+.divider { border: none; border-top: 1px solid var(--border); margin: 4px 0; }
+
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  cursor: pointer;
+  padding: 6px;
+}
+
+.mobile {
+  display: none;
+  flex-direction: column;
+  padding: 16px 24px 24px;
+  gap: 4px;
+  background: rgba(8,12,10,0.98);
+  border-top: 1px solid var(--border);
+}
+
+.mobileLink {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  text-decoration: none;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  transition: all 0.15s ease;
+}
+
+.mobileLink:hover { color: var(--text-primary); background: var(--bg-card); }
+
+.mobileCta {
+  color: var(--accent) !important;
+  font-weight: 600;
+}
+
+.mobileLogout {
+  background: none;
+  border: none;
+  color: #F87171;
+  font-size: 16px;
+  font-weight: 500;
+  padding: 12px 16px;
+  text-align: left;
+  cursor: pointer;
+  font-family: var(--font-body);
+  border-radius: var(--radius-sm);
+  transition: all 0.15s ease;
+}
+
+.mobileLogout:hover { background: rgba(239,68,68,0.08); }
+
+@media (max-width: 768px) {
+  .links { display: none; }
+  .auth > a { display: none; }
+  .hamburger { display: flex; }
+  .mobile { display: flex; }
+}

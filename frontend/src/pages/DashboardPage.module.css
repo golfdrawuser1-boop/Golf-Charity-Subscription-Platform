@@ -1,0 +1,267 @@
+.page { min-height: 100vh; background: var(--bg-primary); }
+
+.wrapper {
+  padding: 100px 0 60px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.greeting {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+}
+
+.name {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.headerActions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+/* Status Bar */
+.statusBar {
+  display: flex;
+  gap: 32px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 20px 28px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.statusItem {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.statusLabel {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+}
+
+.statusValue {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Main Grid */
+.mainGrid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 20px;
+  align-items: start;
+}
+
+/* Card Header */
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.cardTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+/* Scores Card */
+.scoresCard { min-height: 360px; }
+
+.scoresList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.scoreItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 14px 18px;
+  transition: border-color 0.2s ease;
+}
+.scoreItem:hover { border-color: var(--border-accent); }
+
+.scoreRank {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 600;
+  width: 24px;
+  flex-shrink: 0;
+}
+
+.scoreVal {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--accent);
+  min-width: 48px;
+}
+
+.scoreLabel {
+  flex: 1;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.scoreDate {
+  font-size: 13px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+/* Right Column */
+.rightCol {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Charity */
+.charityName {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 12px;
+}
+
+.charityContrib {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.contribPct {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--accent);
+}
+
+.contribLabel {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+/* Draw Card */
+.drawItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+.drawItem:last-child { border-bottom: none; }
+
+.drawName {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.drawDate {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Win Card */
+.winStats {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 8px 0;
+}
+
+.winStat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.winVal {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--gold);
+}
+
+.winLabel {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.winDivider {
+  width: 1px;
+  height: 40px;
+  background: var(--border);
+  flex-shrink: 0;
+}
+
+.pendingAlert {
+  margin-top: 12px;
+  background: var(--gold-dim);
+  border: 1px solid rgba(245,158,11,0.2);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 13px;
+  color: var(--gold);
+}
+
+/* Empty State */
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 40px 20px;
+  color: var(--text-secondary);
+  font-size: 15px;
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .mainGrid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 640px) {
+  .statusBar { gap: 20px; }
+  .headerActions { width: 100%; }
+  .headerActions a { flex: 1; justify-content: center; }
+}
