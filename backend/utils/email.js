@@ -62,6 +62,18 @@ const emails = {
     text: `Congratulations ${name}! You won ₹${prize}.`,
   }),
 
+
+  winnerAlert: (name, prize, matchType) => ({
+    subject: '🎉 You Won a GolfDraw Prize!',
+    html: `<h2>Congratulations ${name}!</h2><p>You matched ${matchType} numbers and won ₹${prize}! Log in to upload your proof and claim your prize.</p>`,
+    text: `Congratulations ${name}! You matched ${matchType} and won ₹${prize}.`,
+  }),
+
+  drawResults: (name, drawDate, matchCount) => ({
+    subject: '🏌️ GolfDraw Monthly Results Are In!',
+    html: `<h2>Hi ${name},</h2><p>The draw for ${drawDate} has been completed.</p>${matchCount > 0 ? `<p>🎉 You matched <strong>${matchCount} numbers</strong>! Log in to check your winnings.</p>` : '<p>Better luck next month! Keep playing and supporting your charity.</p>'}`,
+    text: `Hi ${name}, the GolfDraw results for ${drawDate} are in. ${matchCount > 0 ? `You matched ${matchCount} numbers!` : 'Better luck next month!'}`,
+  }),
   payoutComplete: (name, amount) => ({
     subject: 'Your GolfDraw Payout is Complete 💰',
     html: `<h2>Hi ${name},</h2><p>Your prize payout of ₹${amount} has been processed. Congratulations!</p>`,
